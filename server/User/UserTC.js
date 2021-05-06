@@ -1,7 +1,7 @@
 import {composeMongoose} from "graphql-compose-mongoose";
 import {UserModel} from "./UserModel";
 import faker from "faker";
-import {FamilyTC} from "../Family/FamilyTC";
+import {FamilyMembershipTC} from "../FamilyMembership/FamilyMembershipTC";
 
 const UserTC = composeMongoose(UserModel, {});
 
@@ -20,13 +20,13 @@ UserTC.addResolver({
 });
 
 UserTC.addRelation(
-	"family",
+	"familyMembershipConnections",
 	{
-		resolver: () => FamilyTC.mongooseResolvers.dataLoader(),
+		resolver: () => FamilyMembershipTC.mongooseResolvers.findMany(),
 		prepareArgs: {
-			_id: (source) => source.familyId
+			filter: (source) => ({ userId: source._id })
 		},
-		projection: { familyId: 1 }
+		projection: { _id: 1 }
 	}
 );
 

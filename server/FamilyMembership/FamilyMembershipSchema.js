@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-export const UserSchema = new mongoose.Schema(
+export const FamilyMembershipSchema = new mongoose.Schema(
 	{
-		firstName: String,
-		lastName: String,
-		email: String
+		familyId: String,
+		userId: String,
+		admin: Boolean
 	},
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
