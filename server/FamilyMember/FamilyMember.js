@@ -1,15 +1,15 @@
-import mongoose from 'mongoose';
-import { composeMongoose } from 'graphql-compose-mongoose';
-import { FamilyTC } from "../Family/FamilyTC";
-import { UserTC } from "../User/UserTC";
+import mongoose from "mongoose";
+import { composeMongoose } from "graphql-compose-mongoose";
+// import { FamilyTC } from "../Family/FamilyTC";
+// import { UserTC } from "../User/UserTC";
 
 export const FamilyMemberSchema = new mongoose.Schema(
-    {
-        familyId: String,
-        userId: String,
-        admin: Boolean
-    },
-    { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+	{
+		familyId: String,
+		userId: String,
+		admin: Boolean
+	},
+	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
 export const FamilyMemberModel = mongoose.model("FamilyMember", FamilyMemberSchema);
@@ -39,20 +39,20 @@ export const FamilyMemberTC = composeMongoose(FamilyMemberModel, {});
 // );
 
 export const FamilyMemberQueries = {
-    familyMemberById: FamilyMemberTC.mongooseResolvers.findById(),
-    familyMemberByIds: FamilyMemberTC.mongooseResolvers.findByIds(),
-    familyMemberOne: FamilyMemberTC.mongooseResolvers.findOne(),
-    familyMemberMany: FamilyMemberTC.mongooseResolvers.findMany(),
-    familyMemberCount: FamilyMemberTC.mongooseResolvers.count(),
-    familyMemberPagination: FamilyMemberTC.mongooseResolvers.pagination()
+	familyMemberById: FamilyMemberTC.mongooseResolvers.findById(),
+	familyMemberByIds: FamilyMemberTC.mongooseResolvers.findByIds(),
+	familyMemberOne: FamilyMemberTC.mongooseResolvers.findOne(),
+	familyMemberMany: FamilyMemberTC.mongooseResolvers.findMany(),
+	familyMemberCount: FamilyMemberTC.mongooseResolvers.count(),
+	familyMemberPagination: FamilyMemberTC.mongooseResolvers.pagination()
 };
 
 export const FamilyMemberMutations = {
-    familyMemberCreateOne: FamilyMemberTC.mongooseResolvers.createOne(),
-    familyMemberCreateMany: FamilyMemberTC.mongooseResolvers.createMany(),
-    familyMemberUpdateById: FamilyMemberTC.mongooseResolvers.updateById(),
-    familyMemberUpdateOne: FamilyMemberTC.mongooseResolvers.updateOne(),
-    familyMemberUpdateMany: FamilyMemberTC.mongooseResolvers.updateMany(),
-    familyMemberRemoveById: FamilyMemberTC.mongooseResolvers.removeById(),
-    familyMemberRemoveMany: FamilyMemberTC.mongooseResolvers.removeMany()
+	familyMemberCreateOne: FamilyMemberTC.mongooseResolvers.createOne(),
+	familyMemberCreateMany: FamilyMemberTC.mongooseResolvers.createMany(),
+	familyMemberUpdateById: FamilyMemberTC.mongooseResolvers.updateById(),
+	familyMemberUpdateOne: FamilyMemberTC.mongooseResolvers.updateOne(),
+	familyMemberUpdateMany: FamilyMemberTC.mongooseResolvers.updateMany(),
+	familyMemberRemoveById: FamilyMemberTC.mongooseResolvers.removeById(),
+	familyMemberRemoveMany: FamilyMemberTC.mongooseResolvers.removeMany()
 };

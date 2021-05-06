@@ -1,12 +1,20 @@
 {
     "presets": [
-    [
-        "@babel/env",
-        {
-            "targets": {
-                "node": "current"
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "node": "current"
+                }
             }
-        }
+        ]
+    ],
+    "ignore": [
+        "./node_modules",
+        "./babel.config.json",
+        "./package.json",
+        "./package-lock.json",
+        "./npm-debug.log",
+        "./.gitignore"
     ]
-]
 }
