@@ -16,9 +16,9 @@ export const FamilySchema = new mongoose.Schema(
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-export const FamilyModel = mongoose.model("Family", FamilySchema);
+const FamilyModel = mongoose.model("Family", FamilySchema);
 
-export const FamilyTC = composeMongoose(FamilyModel, {});
+const FamilyTC = composeMongoose(FamilyModel, {});
 
 FamilyTC.addResolver({
     name: "familyCreateRandom",
@@ -45,7 +45,7 @@ FamilyTC.addResolver({
 //     }
 // );
 
-export const FamilyQueries = {
+const FamilyQueries = {
     familyById: FamilyTC.mongooseResolvers.findById(),
     familyByIds: FamilyTC.mongooseResolvers.findByIds(),
     familyOne: FamilyTC.mongooseResolvers.findOne(),
@@ -55,7 +55,7 @@ export const FamilyQueries = {
     familyPagination: FamilyTC.mongooseResolvers.pagination()
 }
 
-export const FamilyMutations = {
+const FamilyMutations = {
     familyCreateOne: FamilyTC.mongooseResolvers.createOne(),
     familyCreateMany: FamilyTC.mongooseResolvers.createMany(),
     familyCreateRandom: FamilyTC.getResolver("familyCreateRandom"),
@@ -64,4 +64,12 @@ export const FamilyMutations = {
     familyUpdateMany: FamilyTC.mongooseResolvers.updateMany(),
     familyRemoveById: FamilyTC.mongooseResolvers.removeById(),
     familyRemoveMany: FamilyTC.mongooseResolvers.removeMany()
+}
+
+module.exports = {
+    FamilySchema: FamilySchema,
+    FamilyModel: FamilyModel,
+    FamilyTC: FamilyTC,
+    FamilyQueries: FamilyQueries,
+    FamilyMutations: FamilyMutations
 }
