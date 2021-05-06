@@ -5,19 +5,23 @@ import { FamilyMutations } from "./Family/FamilyMutations";
 import { FamilyQueries } from "./Family/FamilyQueries";
 import { FamilyMembershipQueries } from "./FamilyMembership/FamilyMembershipQueries";
 import { FamilyMembershipMutations } from "./FamilyMembership/FamilyMembershipMutations";
+import { FamilyEventQueries } from "./FamilyEvent/FamilyEventQueries";
+import { FamilyEventMutations } from "./FamilyEvent/FamilyEventMutations";
 
 const schemaComposer = new SchemaComposer();
 
 schemaComposer.Query.addFields({
 	...UserQueries,
 	...FamilyQueries,
-	...FamilyMembershipQueries
+	...FamilyMembershipQueries,
+	...FamilyEventQueries
 });
 
 schemaComposer.Mutation.addFields({
 	...UserMutations,
 	...FamilyMutations,
-	...FamilyMembershipMutations
+	...FamilyMembershipMutations,
+	...FamilyEventMutations
 });
 
 export const Schema = schemaComposer.buildSchema();

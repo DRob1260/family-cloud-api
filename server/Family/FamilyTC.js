@@ -2,6 +2,7 @@ import {FamilyModel} from "./FamilyModel";
 import {composeMongoose} from "graphql-compose-mongoose";
 import faker from "faker";
 import {FamilyMembershipTC} from "../FamilyMembership/FamilyMembershipTC";
+import {FamilyEventTC} from "../FamilyEvent/FamilyEventTC";
 
 const FamilyTC = composeMongoose(FamilyModel, {});
 
@@ -23,6 +24,17 @@ FamilyTC.addRelation(
 	"familyMembershipConnections",
 	{
 		resolver: () => FamilyMembershipTC.mongooseResolvers.findMany(),
+		prepareArgs: {
+			filter: (source) => ({ familyId: source._id })
+		},
+		projection: { _id: 1 }
+	}
+);
+
+FamilyTC.addRelation(
+	"familyEventConnections",
+	{
+		resolver: () => FamilyEventTC.mongooseResolvers.findMany(),
 		prepareArgs: {
 			filter: (source) => ({ familyId: source._id })
 		},
