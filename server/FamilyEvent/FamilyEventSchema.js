@@ -7,6 +7,7 @@ export const FamilyEventSchema = new mongoose.Schema(
 		dateEnd: Date,
 		name: String,
 		description: String,
+		postFeedIds: [String]
 	},
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
