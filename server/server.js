@@ -1,7 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const SchemaComposer = require("./SchemaComposer");
-const { graphqlHTTP } = require("express-graphql");
+import express from "express";
+import mongoose from "mongoose";
+import { graphqlHTTP } from 'express-graphql';
+import SchemaComposer from "./SchemaComposer";
+import "regenerator-runtime/runtime.js";
 
 const app = express();
 
@@ -26,7 +27,7 @@ mongoose.connection.on(
 
 app.use(
     "/graphql",
-    graphqlHTTP((request) => {
+    graphqlHTTP(() => {
         return {
             context: { startTime: Date.now() },
             graphiql: true,
