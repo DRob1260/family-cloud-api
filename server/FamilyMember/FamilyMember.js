@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const { composeMongoose } = require("graphql-compose-mongoose");
-const { FamilyTC } = require("../Family/Family");
-const { UserTC } = require("../User/User");
+import mongoose from 'mongoose';
+import { composeMongoose } from 'graphql-compose-mongoose';
+import { FamilyTC } from "../Family/FamilyTC";
+import { UserTC } from "../User/UserTC";
 
-const FamilyMemberSchema = new mongoose.Schema(
+export const FamilyMemberSchema = new mongoose.Schema(
     {
         familyId: String,
         userId: String,
@@ -12,9 +12,9 @@ const FamilyMemberSchema = new mongoose.Schema(
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-const FamilyMemberModel = mongoose.model("FamilyMember", FamilyMemberSchema);
+export const FamilyMemberModel = mongoose.model("FamilyMember", FamilyMemberSchema);
 
-const FamilyMemberTC = composeMongoose(FamilyMemberModel, {});
+export const FamilyMemberTC = composeMongoose(FamilyMemberModel, {});
 
 // FamilyMemberTC.addRelation(
 //     "family",
@@ -38,7 +38,7 @@ const FamilyMemberTC = composeMongoose(FamilyMemberModel, {});
 //     }
 // );
 
-const FamilyMemberQueries = {
+export const FamilyMemberQueries = {
     familyMemberById: FamilyMemberTC.mongooseResolvers.findById(),
     familyMemberByIds: FamilyMemberTC.mongooseResolvers.findByIds(),
     familyMemberOne: FamilyMemberTC.mongooseResolvers.findOne(),
@@ -47,7 +47,7 @@ const FamilyMemberQueries = {
     familyMemberPagination: FamilyMemberTC.mongooseResolvers.pagination()
 };
 
-const FamilyMemberMutations = {
+export const FamilyMemberMutations = {
     familyMemberCreateOne: FamilyMemberTC.mongooseResolvers.createOne(),
     familyMemberCreateMany: FamilyMemberTC.mongooseResolvers.createMany(),
     familyMemberUpdateById: FamilyMemberTC.mongooseResolvers.updateById(),
@@ -56,11 +56,3 @@ const FamilyMemberMutations = {
     familyMemberRemoveById: FamilyMemberTC.mongooseResolvers.removeById(),
     familyMemberRemoveMany: FamilyMemberTC.mongooseResolvers.removeMany()
 };
-
-module.exports = {
-    FamilyMemberSchema: FamilyMemberSchema,
-    FamilyMemberModel: FamilyMemberModel,
-    FamilyMemberTC: FamilyMemberTC,
-    FamilyMemberQueries: FamilyMemberQueries,
-    FamilyMemberMutations: FamilyMemberMutations
-}

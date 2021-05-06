@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { graphqlHTTP } from 'express-graphql';
-import SchemaComposer from "./SchemaComposer";
+import { Schema } from "./SchemaComposer";
 import "regenerator-runtime/runtime.js";
 
 const app = express();
@@ -31,7 +31,7 @@ app.use(
         return {
             context: { startTime: Date.now() },
             graphiql: true,
-            schema: SchemaComposer,
+            schema: Schema,
             extensions,
         };
     })

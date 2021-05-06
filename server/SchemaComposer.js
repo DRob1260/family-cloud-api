@@ -1,6 +1,8 @@
-const { SchemaComposer } = require("graphql-compose");
-const { UserQueries, UserMutations } = require("./User/User");
-const { FamilyQueries, FamilyMutations } = require("./Family/Family");
+import { SchemaComposer } from 'graphql-compose';
+import { UserQueries } from "./User/UserQueries";
+import { UserMutations } from './User/UserMutations';
+import { FamilyMutations } from "./Family/FamilyMutations";
+import { FamilyQueries } from "./Family/FamilyQueries";
 
 const schemaComposer = new SchemaComposer();
 
@@ -14,4 +16,4 @@ schemaComposer.Mutation.addFields({
     ...FamilyMutations
 });
 
-module.exports = schemaComposer.buildSchema();
+export const Schema = schemaComposer.buildSchema();
