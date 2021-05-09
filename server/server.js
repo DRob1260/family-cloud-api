@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import { graphqlHTTP } from "express-graphql";
-import { Schema } from "./SchemaComposer";
+import {Schema} from "./SchemaComposer";
+import cors from "cors";
 import "regenerator-runtime/runtime.js";
 
 const app = express();
@@ -11,6 +12,8 @@ const extensions = ({ context }) => {
 		runTime: Date.now() - context.startTime,
 	};
 };
+
+app.use(cors());
 
 app.listen(5000, async () => {
 	console.log("server is running ", 5000);
