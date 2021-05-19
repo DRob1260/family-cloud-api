@@ -19,6 +19,17 @@ UserTC.addResolver({
 	}
 });
 
+UserTC.addResolver({
+	name: "userCurrent",
+	type: UserTC,
+	resolve: ({ context }) => {
+		const user = context.user;
+		if(user) {
+			return user;
+		} else return null;
+	}
+});
+
 UserTC.addRelation(
 	"familyMembershipConnections",
 	{

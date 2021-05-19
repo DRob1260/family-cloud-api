@@ -3,15 +3,12 @@ import mongoose from "mongoose";
 import { graphqlHTTP } from "express-graphql";
 import {Schema} from "./SchemaComposer";
 import cors from "cors";
+import {authMiddleware} from "./AuthMiddleware";
 import "regenerator-runtime/runtime.js";
+import * as bodyParser from "body-parser";
+import {context} from "./Context";
 
 const app = express();
-
-const extensions = ({ context }) => {
-	return {
-		runTime: Date.now() - context.startTime,
-	};
-};
 
 app.use(cors());
 
@@ -28,14 +25,27 @@ mongoose.connection.on(
 	console.error.bind(console, "MongoDB connection error:")
 );
 
+if(process.env.LOCAL) {
+	app.use(
+		"/schema",
+		graphqlHTTP( () => {
+			return {
+				schema: Schema
+			}
+		})
+	);
+}
+
 app.use(
 	"/graphql",
-	graphqlHTTP(() => {
+	bodyParser.json(),
+	authMiddleware,
+	graphqlHTTP(async (req) => {
+		const c = await context(req);
 		return {
-			context: { startTime: Date.now() },
+			context: c,
 			graphiql: true,
 			schema: Schema,
-			extensions,
 		};
 	})
 );

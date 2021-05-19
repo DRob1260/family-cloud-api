@@ -7,5 +7,6 @@ export const UserQueries = {
 	userMany: UserTC.mongooseResolvers.findMany(),
 	userCount: UserTC.mongooseResolvers.count(),
 	userConnection: UserTC.mongooseResolvers.connection(),
-	userPagination: UserTC.mongooseResolvers.pagination()
+	userPagination: UserTC.mongooseResolvers.pagination(),
+	userCurrent: UserTC.getResolver("userCurrent")
 };
