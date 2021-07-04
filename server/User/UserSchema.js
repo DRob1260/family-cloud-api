@@ -6,8 +6,8 @@ export const UserSchema = new mongoose.Schema(
 		lastName: String,
 		email: String,
 		account: {
-			auth0: {
-				sub: String
+			firebase: {
+				uid: String
 			}
 		}
 	},
