@@ -1,6 +1,6 @@
 import { SchemaComposer } from "graphql-compose";
-import { UserQueries } from "./User/UserQueries";
-import { UserMutations } from "./User/UserMutations";
+import { UserProfileQueries } from "./UserProfile/UserProfileQueries";
+import { UserProfileMutations } from "./UserProfile/UserProfileMutations";
 import { FamilyMutations } from "./Family/FamilyMutations";
 import { FamilyQueries } from "./Family/FamilyQueries";
 import { FamilyMembershipQueries } from "./FamilyMembership/FamilyMembershipQueries";
@@ -11,11 +11,14 @@ import { PostFeedQueries } from "./PostFeed/PostFeedQueries";
 import { PostFeedMutations } from "./PostFeed/PostFeedMutations";
 import { PostQueries } from "./Post/PostQueries";
 import { PostMutations } from "./Post/PostMutations";
+import {AccountQueries} from "./Account/AccountQueries";
+import {AccountMutations} from "./Account/AccountMutations";
 
 const schemaComposer = new SchemaComposer();
 
 schemaComposer.Query.addFields({
-	...UserQueries,
+	...AccountQueries,
+	...UserProfileQueries,
 	...FamilyQueries,
 	...FamilyMembershipQueries,
 	...FamilyEventQueries,
@@ -24,7 +27,8 @@ schemaComposer.Query.addFields({
 });
 
 schemaComposer.Mutation.addFields({
-	...UserMutations,
+	...AccountMutations,
+	...UserProfileMutations,
 	...FamilyMutations,
 	...FamilyMembershipMutations,
 	...FamilyEventMutations,

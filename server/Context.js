@@ -1,4 +1,4 @@
-import {UserModel} from "./User/UserModel";
+import {UserProfileModel} from "./UserProfile/UserProfileModel";
 
 export const context = async (req) => {
 	const auth0User = req.user;
@@ -6,7 +6,7 @@ export const context = async (req) => {
 	let currentUser;
 
 	if(auth0User && auth0User.sub) {
-		await UserModel.findOne({
+		await UserProfileModel.findOne({
 			account: {
 				auth0: {
 					sub: auth0User.sub
@@ -20,5 +20,5 @@ export const context = async (req) => {
 	return {
 		user: currentUser,
 		auth0User: auth0User
-	}
-}
+	};
+};

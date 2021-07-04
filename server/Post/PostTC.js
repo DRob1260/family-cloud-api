@@ -1,7 +1,7 @@
 import { composeMongoose } from "graphql-compose-mongoose";
 import { PostModel } from "./PostModel";
 import { PostFeedTC } from "../PostFeed/PostFeedTC";
-import {UserTC} from "../User/UserTC";
+import {AccountTC} from "../Account/AccountTC";
 
 const PostTC = composeMongoose(PostModel, {});
 
@@ -17,13 +17,13 @@ PostTC.addRelation(
 );
 
 PostTC.addRelation(
-	"authorUserConnection",
+	"authorAccountConnection",
 	{
-		resolver: () => UserTC.mongooseResolvers.dataLoader(),
+		resolver: () => AccountTC.mongooseResolvers.dataLoader(),
 		prepareArgs: {
-			_id: (source) => (source.authorUserId)
+			_id: (source) => (source.authorAccountId)
 		},
-		projection: { authorUserId: 1 }
+		projection: { authorAccountId: 1 }
 	}
 );
 

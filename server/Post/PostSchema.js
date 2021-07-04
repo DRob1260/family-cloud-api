@@ -4,7 +4,7 @@ import {ImageSchema} from "../Image/ImageSchema";
 export const PostSchema = new mongoose.Schema(
 	{
 		postFeedId: String,
-		authorUserId: String,
+		authorAccountId: String,
 		message: String,
 		images: [ImageSchema]
 	},

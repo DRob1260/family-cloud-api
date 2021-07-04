@@ -1,6 +1,6 @@
 import { composeMongoose } from "graphql-compose-mongoose";
 import { PostFeedModel } from "./PostFeedModel";
-import { UserTC } from "../User/UserTC";
+import { UserProfileTC } from "../UserProfile/UserProfileTC";
 import {PostTC} from "../Post/PostTC";
 
 const PostFeedTC = composeMongoose(PostFeedModel, {});
@@ -8,11 +8,11 @@ const PostFeedTC = composeMongoose(PostFeedModel, {});
 PostFeedTC.addRelation(
 	"adminUserConnections",
 	{
-		resolver: () => UserTC.mongooseResolvers.dataLoaderMany(),
+		resolver: () => UserProfileTC.mongooseResolvers.dataLoaderMany(),
 		prepareArgs: {
-			_ids: (source) => (source.adminUserIds)
+			_ids: (source) => (source.adminAccountIds)
 		},
-		projection: { adminUserIds: 1 }
+		projection: { adminAccountIds: 1 }
 	}
 );
 
