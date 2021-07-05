@@ -8,7 +8,7 @@ const FamilyMembershipTC = composeMongoose(FamilyMembershipModel, {});
 FamilyMembershipTC.addRelation(
 	"familyConnection",
 	{
-		resolver: () => FamilyTC.mongooseResolvers.dataLoader(),
+		resolver: () => FamilyTC.mongooseResolvers.findById(),
 		prepareArgs: {
 			_id: (source) => source.familyId
 		},
@@ -19,7 +19,7 @@ FamilyMembershipTC.addRelation(
 FamilyMembershipTC.addRelation(
 	"accountConnection",
 	{
-		resolver: () => AccountTC.mongooseResolvers.dataLoader(),
+		resolver: () => AccountTC.mongooseResolvers.findById(),
 		prepareArgs: {
 			_id: (source) => source.accountId
 		},

@@ -8,7 +8,7 @@ const PostTC = composeMongoose(PostModel, {});
 PostTC.addRelation(
 	"postFeedConnection",
 	{
-		resolver: () => PostFeedTC.mongooseResolvers.dataLoader(),
+		resolver: () => PostFeedTC.mongooseResolvers.findById(),
 		prepareArgs: {
 			_id: (source) => (source.postFeedId)
 		},
@@ -19,7 +19,7 @@ PostTC.addRelation(
 PostTC.addRelation(
 	"authorAccountConnection",
 	{
-		resolver: () => AccountTC.mongooseResolvers.dataLoader(),
+		resolver: () => AccountTC.mongooseResolvers.findById(),
 		prepareArgs: {
 			_id: (source) => (source.authorAccountId)
 		},

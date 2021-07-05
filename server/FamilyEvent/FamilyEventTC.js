@@ -8,7 +8,7 @@ const FamilyEventTC = composeMongoose(FamilyEventModel, {});
 FamilyEventTC.addRelation(
 	"familyConnection",
 	{
-		resolver: () => FamilyTC.mongooseResolvers.dataLoader(),
+		resolver: () => FamilyTC.mongooseResolvers.findById(),
 		prepareArgs: {
 			_id: (source) => source.familyId
 		},
@@ -19,7 +19,7 @@ FamilyEventTC.addRelation(
 FamilyEventTC.addRelation(
 	"postFeedConnections",
 	{
-		resolver: () => PostFeedTC.mongooseResolvers.dataLoaderMany(),
+		resolver: () => PostFeedTC.mongooseResolvers.findMany(),
 		prepareArgs: {
 			_ids: (source) => (source.postFeedIds)
 		},

@@ -8,7 +8,7 @@ const PostFeedTC = composeMongoose(PostFeedModel, {});
 PostFeedTC.addRelation(
 	"adminUserConnections",
 	{
-		resolver: () => UserProfileTC.mongooseResolvers.dataLoaderMany(),
+		resolver: () => UserProfileTC.mongooseResolvers.findMany(),
 		prepareArgs: {
 			_ids: (source) => (source.adminAccountIds)
 		},
